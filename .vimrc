@@ -5,7 +5,9 @@ map <F5> :NERDTreeMirror<CR>
 map <F5> :NERDTreeToggle<CR>
 
 syntax enable
-colorscheme darkblue
+set t_Co=256
+colorscheme zenburn
+set background=dark
 
 syntax enable
 
@@ -32,6 +34,8 @@ set cursorline
 " show the matching part of the pair for [] {} and () set showmatch " enable all Python syntax highlighting features let python_highlight_all = 1
 set relativenumber
 
+
+set hlsearch
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'itchyny/lightline.vim'
@@ -48,7 +52,7 @@ Plugin 'scrooloose/syntastic'
 "查找功能
 Plugin 'justinmk/vim-sneak'
 "代码片展开
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 "gc注释
 Plugin 'tomtom/tcomment_vim.git'
 "自动补全引号括号等
@@ -63,17 +67,13 @@ Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'https://github.com/suan/vim-instant-markdown.git'
+Plugin 'https://github.com/jnurmine/Zenburn.git'
+Plugin 'https://github.com/davidhalter/jedi-vim.git'
 call vundle#end()
 
 let g:UltiSnipsExpandTrigger = "<tab>"
 "ctrlp
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$' 
-"tagbar
-nmap <F8> :TagbarToggle<CR>
-"syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
 
 let g:syntastic_check_on_open = 1
 " let g:syntastic_auto_loc_list = 1
@@ -82,3 +82,20 @@ let g:syntastic_check_on_open = 1
 " let g:syntastic_always_populate_loc_list = 1
 "
 "markdown
+
+"ctag config
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+
+"js format
+map  :call JsBeautify()
+" or
+autocmd FileType javascript noremap    :call JsBeautify()
+" for html
+autocmd FileType html noremap   :call HtmlBeautify()
+" for css or scss
+autocmd FileType css noremap   :call CSSBeautify()
+
+"jedi
+let g:jedi#completions_enabled = 0
